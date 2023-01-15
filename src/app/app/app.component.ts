@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.array = this.sortService.generateArray(20);
-    const result = this.sortService.bubbleSort(this.array);
+    const result = this.sortService.selectionSort(this.array);
 
     console.log(result);
   }
