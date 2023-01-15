@@ -43,6 +43,18 @@ export class SortingService {
     return arr;
   }
 
+  insertionSort(arr: (string | number)[]): (string | number)[] {
+    for (let i = 1; i < arr.length; i++) {
+      let j = i;
+      while (arr[j] < arr[j - 1] && j >= 1 ) {
+        this.swap(arr, j, j - 1);
+        j--;
+      }
+    }
+
+    return arr;
+  }
+
   generateArray(length: number): string[] | number[] {
     const arr = [];
     for (let i = 0; i < length; i++) {
