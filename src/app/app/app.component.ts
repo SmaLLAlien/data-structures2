@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
+import {SortingService} from "./sorting.service";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit {
   taskControl = new FormControl('', Validators.required);
   array: (number| string)[] = [];
 
-  constructor() { }
+  constructor(private sortService: SortingService) { }
 
   addItemToList(): void {
 
@@ -22,5 +23,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.array = this.sortService.generateArray(20);
+    const result = this.sortService.bubbleSort(this.array);
+
+    console.log(result);
   }
 }
