@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
-import {SortingService} from "./sorting.service";
+import {BasicSortingService} from "./basic-sorting.service";
 import {MergeSortService} from "./services/merge-sort.service";
 
 @Component({
@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   taskControl = new FormControl('', Validators.required);
   array: (number| string)[] = [];
 
-  constructor(private sortService: SortingService, private mergeSort: MergeSortService) { }
+  constructor(private sortService: BasicSortingService, private mergeSort: MergeSortService) { }
 
   addItemToList(): void {
 
