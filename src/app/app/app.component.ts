@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 import {BasicSortingService} from "./basic-sorting.service";
-import {QuickSortService} from "./services/quick-sort.service";
+import {RadixSortService} from "./services/radix-sort.service";
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   array: (number| string)[] = [];
 
   constructor(private sortService: BasicSortingService,
-              private quickSort: QuickSortService) { }
+              private radixSort: RadixSortService) { }
 
   addItemToList(): void {
 
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.array = this.sortService.generateArray(20);
-    const result = this.quickSort.quickSort(this.array);
+    const result = this.radixSort.radixSort(this.array as number[]);
 
     console.log(result);
   }
