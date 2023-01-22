@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
-import {BasicSortingService} from "./basic-sorting.service";
+import {BasicSortingService} from "./services/basic-sorting.service";
 import {RadixSortService} from "./services/radix-sort.service";
 
 @Component({
