@@ -87,4 +87,95 @@ export class DoubleLinkedListService {
 
     return this;
   }
+
+  get(index: number): NodeService {
+    if (index < 0 || index >= this.length) {
+      return undefined;
+    }
+
+    if (index <= this.length / 2) {
+      let count = 0;
+      let current = this.head;
+      while (count !== index) {
+        current = current.next;
+        count++;
+      }
+
+      return current;
+    } else {
+      let count = this.length - 1;
+      let current = this.tail;
+      while (count !== index) {
+        current = current.prev;
+        count--;
+      }
+
+      return current;
+    }
+  }
+
+  set(index: number, val: any): boolean {
+    const node = this.get(index);
+
+    if (node) {
+      node.val = val;
+
+      return true;
+    }
+
+    return false;
+  }
+
+  insert(index: number, val: any): boolean {
+    if (index < 0 || index > this.length) {
+      return undefined;
+    }
+
+    if (index === 0) {
+      return !!this.unshift(val);
+    }
+
+    if (index === this.length) {
+      return !!this.push(val);
+    }
+
+    const newNode = new NodeService(val);
+    const beforeNewNode = this.get(index - 1);
+    const afterNewNode = beforeNewNode.next;
+
+    beforeNewNode.next = newNode;
+    newNode.prev = beforeNewNode;
+
+    newNode.next = afterNewNode;
+    afterNewNode.prev = newNode;
+
+    this.length++;
+
+    return true;
+  }
+
+  remove(index: number): NodeService {
+    if (index < 0 || index >= this.length) {
+      return undefined;
+    }
+
+    if (index === 0) {
+      return this.shift();
+    }
+
+    if (index === this.length - 1) {
+      return this.pop();
+    }
+
+    let removedNode = this.get(index);
+    removedNode.prev.next = removedNode.next;
+    removedNode.next.prev = removedNode.prev;
+
+    removedNode.next = null;
+    removedNode.prev = null;
+
+    this.length--;
+
+    return removedNode;
+  }
 }
