@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GraphService } from './graph.service';
+import { WeightedGraphService } from './weighted-graph.service';
 
-describe('GraphService', () => {
-  let service: GraphService;
+describe('WeightedGraphService', () => {
+  let service: WeightedGraphService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(GraphService);
+    service = TestBed.inject(WeightedGraphService);
   });
 
   it('should be created', () => {

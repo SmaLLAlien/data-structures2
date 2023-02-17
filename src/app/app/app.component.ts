@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
-import {GraphService} from "../services/graph.service";
+import {WeightedGraphService} from "../services/weighted-graph.service";
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   taskControl = new FormControl('', Validators.required);
   array: (number| string)[] = [];
 
-  constructor(private graph: GraphService) { }
+  constructor(private graph: WeightedGraphService) { }
 
   addItemToList(): void {
 
@@ -30,18 +30,16 @@ export class AppComponent implements OnInit {
     this.graph.addVertex('E');
     this.graph.addVertex('F');
 
-    this.graph.addEdge('A', 'B');
-    this.graph.addEdge('A', 'C');
-    this.graph.addEdge('B', 'D');
-    this.graph.addEdge('C', 'E');
-    this.graph.addEdge('D', 'F');
-    this.graph.addEdge('E', 'F');
+    this.graph.addEdge('A', 'B', 4);
+    this.graph.addEdge('A', 'C', 2);
+    this.graph.addEdge('B', 'E', 3);
+    this.graph.addEdge('C', 'D', 2);
+    this.graph.addEdge('C', 'F', 4);
+    this.graph.addEdge('D', 'E', 3);
+    this.graph.addEdge('D', 'F', 1);
+    this.graph.addEdge('E', 'F', 1);
 
-    const nodes = this.graph.depthFirstRecursiveTraversal('A');
-    const nodes2 = this.graph.depthFirstIterative('A');
-    const nodes3 = this.graph.breadthFirstTraversal('A');
-    console.log(nodes);
-    console.log(nodes2);
-    console.log(nodes3);
+    const path = this.graph.dijkstra('A', 'F');
+    console.log(path);
   }
 }
